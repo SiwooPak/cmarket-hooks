@@ -1,9 +1,10 @@
 import React from 'react';
 import Item from '../components/Item';
 
-function ItemListContainer({ items, handleCount }) {
-  const handleClick = (e, id) => { 
-    handleCount(e, id);
+function ItemListContainer({ items, updateCart }) {
+  const handleClick = (e, itemId) => {
+    
+    updateCart(itemId);
   }
   return (
     <div id="item-list-container">
