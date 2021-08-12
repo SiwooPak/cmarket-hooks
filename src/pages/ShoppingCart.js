@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import CartItem from '../components/CartItem'
 import OrderSummary from '../components/OrderSummary'
 
-export default function ShoppingCart({ items, cartItems, deleteCartItem, updateQuantity}) {
+export default function ShoppingCart({ items, cartItems, deleteCartItem, updateQuantity  }) {
   const [checkedItems, setCheckedItems] = useState(cartItems.map((el) => el.itemId))
 
   const handleCheckChange = (checked, id) => {
@@ -26,18 +26,19 @@ export default function ShoppingCart({ items, cartItems, deleteCartItem, updateQ
   const handleQuantityChange = (quantity, itemId) => {
     const findItem = cartItems.filter(cartItem => cartItem.itemId === itemId)[0];
     const idx = cartItems.indexOf(findItem);
-    const updateCartItems = [
+    const updateQuantityItems = [
       ...cartItems.slice(0, idx),
       {itemId, quantity},
       ...cartItems.slice(idx+1)
     ];
-    updateQuantity(updateCartItems);
+    updateQuantity(updateQuantityItems);
   }
 
   const handleDelete = (itemId) => {
-    //setCheckedItems(checkedItems.filter((el) => el !== itemId));
-    const filteredCartItems = cartItems.filter(cartItem => cartItem.itemId !== itemId);
+    // setCheckedItems(checkedItems.filter((el) => el !== itemId));
+    const filteredCartItems = cartItems.filter(cartItem => cartItem.itemId !== itemId)
     deleteCartItem(filteredCartItems);
+
   }
 
   const getTotal = () => {
